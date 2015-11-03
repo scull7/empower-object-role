@@ -4,6 +4,7 @@
   "description": "Determine object specific user roles.",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "coffee -o dist -c src/*.coffee",
     "test": "mocha && ./node_modules/.bin/istanbul report"
   },
   "repository": {
