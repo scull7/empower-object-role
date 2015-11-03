@@ -2,6 +2,9 @@
 class Map
 
   EMPTY_LIST  = []
+  # type Handler :: Context -> String -> (Error -> Array String)
+  # type Callback :: Error -> Array String -> Nil
+  NIL_HANDLER = (context, objectId, done) -> done null, EMPTY_LIST
 
   # constructor :: ObjectRoleMap
   constructor: ->
@@ -25,10 +28,15 @@ class Map
   hasHandler: (objectName) -> ( @map.hasOwnProperty objectName )
 
 
-  # getObjectRoles :: String -> String -> Context -> Array String
-  getObjectRoles: (objectName, context, objectId) ->
-    if not (@hasHandler objectName) then EMPTY_LIST else
-      ( @map[objectName].call null, context, objectId )
+  # getHandler :: String -> Handler
+  getHandler: (objectName) -> if (@hasHandler objectName)
+    @map[objectName]
+  else NIL_HANDLER
+
+
+  # getRoles :: String -> Context -> String -> Callback -> Nil
+  getRoles: (objectName, context, id, done) ->
+    (@getHandler objectName) context, id, done
 
 
 module.exports  = -> new Map()

@@ -57,21 +57,51 @@ describe 'Object Role Map', ->
       map.addHandler 'test', -> []
       assert.equal (map.hasHandler 'test'), true
 
-  describe 'getObjectRoles', ->
+  describe 'getHandler', ->
 
-    it 'should return an empty list when the objectName key does not exist', ->
+    it 'should return the nil handler when the objectName key does not exist',
+    (done) ->
+      map     = ObjectRoleMap()
+      handler = map.getHandler 'test'
 
-      map = ObjectRoleMap()
-      assert.deepEqual (map.getObjectRoles 'test', 'test', {}), []
-
-    it 'should call the handler with the objectId and context', (done) ->
-
-      handler = (context, objectId) ->
-        assert.equal objectId, 'testId'
-        assert.equal context, 'testContext'
+      handler 'test', 'test', (err, res) ->
+        assert.equal err, null
+        assert.deepEqual res, []
         done()
 
-      map     = ObjectRoleMap()
-      map.addHandler 'testName', handler
+    it 'should return the set handler when the objectName key does exist',
+    (done) ->
 
-      map.getObjectRoles 'testName', 'testContext', 'testId'
+      map     = ObjectRoleMap()
+      map.addHandler 'test', (ctx, id, cb)-> cb null, 'testResponse'
+      handler = map.getHandler 'test'
+
+      handler 'test', 'test', (err, res) ->
+        assert.equal err, null
+        assert.equal res, 'testResponse'
+        done()
+
+  describe 'getRoles', ->
+
+    it 'should return an empty list if the objectName key does not exist',
+    (done) ->
+
+      map     = ObjectRoleMap()
+      map.getRoles 'test', 'testContext', 'testId', (err, roles) ->
+        assert.equal err, null
+        assert.deepEqual roles, []
+        done()
+
+    it 'should return the list provided by a found handler', (done) ->
+
+      handler = (ctx, id, done) -> done null, [ctx, id]
+
+      map     = ObjectRoleMap()
+      map.addHandler 'test', handler
+
+      map.getRoles 'test', 'testContext', 'testId', (err, roles) ->
+
+        assert.equal err, null
+        assert.equal 'testContext', roles[0]
+        assert.equal 'testId', roles[1]
+        done()
