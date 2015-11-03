@@ -1,10 +1,10 @@
 {
   "name": "empower-object-role",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Determine object specific user roles.",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "coffee -o dist -c src/*.coffee",
+    "prepublish": "./node_modules/.bin/coffee -o dist -c src/*.coffee",
     "test": "mocha && ./node_modules/.bin/istanbul report"
   },
   "repository": {

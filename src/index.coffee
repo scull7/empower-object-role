@@ -1,3 +1,3 @@
-Map             = require './map.coffee'
+Map             = require './map'
 
 module.exports  = Map
