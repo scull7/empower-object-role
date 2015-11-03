@@ -1,0 +1,35 @@
+{
+  "name": "empower-object-role",
+  "version": "1.0.0",
+  "description": "Determine object specific user roles.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha && ./node_modules/.bin/istanbul report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scull7/empower-object-role.git"
+  },
+  "keywords": [
+    "auth",
+    "authorize",
+    "empower",
+    "object",
+    "access",
+    "role",
+    "user"
+  ],
+  "author": "Nathan A Sculli <scull7@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scull7/empower-object-role/issues"
+  },
+  "homepage": "https://github.com/scull7/empower-object-role#readme",
+  "dependencies": {
+    "coffee-coverage": "^0.7.0",
+    "coffee-script": "^1.10.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.3"
+  }
+}
