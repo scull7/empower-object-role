@@ -1,5 +1,5 @@
 {
-  "name": "empower-object-role",
+  "name": "privilege-object-role",
   "version": "2.0.0",
   "description": "Determine object specific user roles.",
   "main": "dist/index.js",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scull7/empower-object-role.git"
+    "url": "git+https://github.com/scull7/privilege-object-role.git"
   },
   "keywords": [
     "auth",
     "authorize",
-    "empower",
+    "privilege",
     "object",
     "access",
     "role",
@@ -23,9 +23,9 @@
   "author": "Nathan A Sculli <scull7@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scull7/empower-object-role/issues"
+    "url": "https://github.com/scull7/privilege-object-role/issues"
   },
-  "homepage": "https://github.com/scull7/empower-object-role#readme",
+  "homepage": "https://github.com/scull7/privilege-object-role#readme",
   "dependencies": {
     "bluebird": "^3.0.5",
     "coffee-coverage": "^0.7.0",
