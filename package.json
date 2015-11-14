@@ -1,6 +1,6 @@
 {
   "name": "privilege-object-role",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Determine object specific user roles.",
   "main": "dist/index.js",
   "scripts": {
