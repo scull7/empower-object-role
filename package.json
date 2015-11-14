@@ -26,8 +26,7 @@
     "url": "https://github.com/scull7/privilege-object-role/issues"
   },
   "homepage": "https://github.com/scull7/privilege-object-role#readme",
-  "dependencies": {
-    "bluebird": "^3.0.5",
+  "devDependencies": {
     "coffee-coverage": "^0.7.0",
     "coffee-script": "^1.10.0",
     "coveralls": "^2.11.4",
