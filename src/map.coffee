@@ -17,6 +17,9 @@ class Map
     if typeof handler isnt 'function'
       throw new TypeError 'handler must be a function'
 
+    if handler.length isnt 3
+      throw new TypeError 'handler must have an arity of 3 (ctx, id, done)'
+
     if @hasHandler objectName
       throw new Error "Handler for #{objectName} already exists"
 

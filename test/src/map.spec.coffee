@@ -17,19 +17,36 @@ describe 'Object Role Map', ->
         map.addHandler 'test', 'test'
       catch e
         assert.equal e.message, 'handler must be a function'
+        return
+
+      throw Error 'unexpected success'
+
+    it 'should throw a TypeError if the handler function arity is < 3', ->
+
+      try
+        map = ObjectRoleMap()
+        map.addHandler 'test', (ctx, id) -> []
+      catch e
+        assert.equal(
+          e.message,
+          'handler must have an arity of 3 (ctx, id, done)'
+        )
+        return
+
+      throw Error 'unexpected success'
 
     it 'should throw an error on a duplicate object name', ->
 
       try
         map = ObjectRoleMap()
-        map.addHandler 'test', -> []
-        map.addHandler 'test', -> []
+        map.addHandler 'test', (ctx, id, done) -> []
+        map.addHandler 'test', (ctx, id, done) -> []
       catch e
         assert.equal e.message, 'Handler for test already exists'
 
     it 'should add the handler at the object name key', ->
 
-      handler = -> []
+      handler = (ctx, id, done) -> []
       map     = ObjectRoleMap()
       map.addHandler 'test', handler
 
@@ -38,8 +55,8 @@ describe 'Object Role Map', ->
     it 'should return the role map so that we can chain addHandler calls', ->
 
       map     = ObjectRoleMap()
-      map.addHandler 'test', -> []
-        .addHandler 'test2', -> []
+      map.addHandler 'test', (ctx, id, done) -> []
+        .addHandler 'test2', (ctx, id, done) -> []
 
       assert.equal (map.hasHandler 'test' ), true
       assert.equal (map.hasHandler 'test2' ), true
@@ -54,7 +71,7 @@ describe 'Object Role Map', ->
     it 'should return true when the objectName key exists', ->
 
       map = ObjectRoleMap()
-      map.addHandler 'test', -> []
+      map.addHandler 'test', (ctx, id, done) -> []
       assert.equal (map.hasHandler 'test'), true
 
   describe 'getHandler', ->
