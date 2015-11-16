@@ -26,6 +26,8 @@ getRolesForObjectList  = (map, context, listOfObjects, done) ->
   errors          = []
   listOfRoleLists = []
 
+  if count < 1 then return done null, listOfRoleLists
+
   handler = (err, listOfRoles) ->
     errors.push err if err
     listOfRoleLists.push listOfRoles if listOfRoles

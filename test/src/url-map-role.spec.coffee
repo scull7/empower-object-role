@@ -87,6 +87,24 @@ describe 'Url -> Map -> Role', ->
 
   describe 'getRolesFromUrl', ->
 
+    it 'should return an empty list when a url does not contain any objects',
+    (done) ->
+
+      test      = '/nothing'
+      expected  = []
+      context   =
+        'object': '123'
+        'sub': '456'
+
+      map = getRoles: (name, context, id, done) -> if context[name] is id
+        done null, [ "#{name}Owner" ]
+      else
+        done null, []
+
+      urlMapRole.getRolesFromUrl map, context, test, (err, actual) ->
+        assert.deepEqual expected, actual
+        done()
+
     it 'should return a combined list of roles', (done) ->
 
       test  = '/my/object/123/sub/425/action'
