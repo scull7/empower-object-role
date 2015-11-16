@@ -29,6 +29,9 @@
     count = listOfObjects.length;
     errors = [];
     listOfRoleLists = [];
+    if (count < 1) {
+      return done(null, listOfRoleLists);
+    }
     handler = function(err, listOfRoles) {
       if (err) {
         errors.push(err);
