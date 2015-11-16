@@ -19,6 +19,9 @@
       if (typeof handler !== 'function') {
         throw new TypeError('handler must be a function');
       }
+      if (handler.length !== 3) {
+        throw new TypeError('handler must have an arity of 3 (ctx, id, done)');
+      }
       if (this.hasHandler(objectName)) {
         throw new Error("Handler for " + objectName + " already exists");
       }
